@@ -4,6 +4,7 @@
 #include<stdlib.h>
 #include<malloc.h>
 #include<string.h>
+#include<Windows.h>
 
 struct node //声明结构体类型struct node
 {

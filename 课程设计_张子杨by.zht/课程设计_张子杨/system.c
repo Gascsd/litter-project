@@ -61,6 +61,7 @@ void create(struct node** phead)//创建链表函数,增加信息
     printf("\n输入完成!\n");
     printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
     printf("*****************************************************\n");
+    system("pause");
 }
 
 
@@ -90,6 +91,8 @@ void search(struct node* head)//查找信息
         printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
         printf("*****************************************************\n");
     }
+    system("pause");
+
 }
 
 void revise(struct node** phead)//修改管理表
@@ -129,6 +132,8 @@ void revise(struct node** phead)//修改管理表
         printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
         printf("*****************************************************\n");
     }
+    system("pause");
+
 }
 
 
@@ -164,6 +169,7 @@ void delete(struct node** phead)//删除管理表
         }
         temp = temp->next;
     }
+    system("pause");
 }
 
 
@@ -184,6 +190,7 @@ void print(struct node* head)//打印信息
     }
     printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
     printf("*****************************************************\n");
+    system("pause");
 }
 
 
@@ -203,6 +210,7 @@ void count(struct node* head)//计算每个设备金额
     }
     printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
     printf("*****************************************************\n");
+    system("pause");
 }
 
 
@@ -221,7 +229,8 @@ void stats(struct node* head)//统计总数量和总金额
         count += temp->num;
         temp = temp->next;
     }
-    printf("总金额为：%lf\n", sum);
-    printf("总数量为：%d\n", count);
+    printf("总金额为：%.2lf\n", sum);
+    printf("总数量为：%d\n", count);    
+    system("pause");
 }
 
