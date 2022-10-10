@@ -25,7 +25,16 @@ typedef struct Contact
 	int capacity;//Í¨Ñ¶Â¼ÈÝÁ¿
 }Contact;
 
-
+enum
+{
+	EXIT,
+	ADD,
+	DEL,
+	SEARCH,
+	MODIFY,
+	SHOW,
+	SORT
+};
 
 void menu();
 void ContactInit(Contact* pc);
@@ -36,5 +45,6 @@ void ContactModify(Contact* pc);
 void ContactShow(const Contact* pc);
 void ContactSort(Contact* pc);
 void ContactDestroy(Contact* pc);
-
+void SaveFile(Contact* pc);
+void ContactLoad(Contact* pc);
 

@@ -8,24 +8,9 @@ void menu()
 	printf("************************************\n");
 	printf("****** 1. add      2. del    *******\n");
 	printf("****** 3. search   4. modify *******\n");
-	printf("****** 5. show     6. destroy*******\n");
-	printf("****** 7. sort     0. exit   *******\n");
+	printf("****** 5. show     6. sort   *******\n");
+	printf("****** 0. exit               *******\n");
 	printf("************************************\n");
-}
-
-
-
-void ContactInit(Contact* pc)
-{
-	assert(pc);
-	pc->data = calloc(DEFAULT_SZ, sizeof(PeoInfo));
-	if (pc->data == NULL)
-	{
-		printf("ContactInit::%s", strerror(errno));
-		exit(-1);
-	}
-	pc->count = 0;
-	pc->capacity = DEFAULT_SZ;
 }
 
 void CheckCapacity(Contact* pc)
@@ -42,8 +27,64 @@ void CheckCapacity(Contact* pc)
 		pc->data = ptr;
 		pc->capacity += INC_SZ;
 		printf("增容成功\n");
-	} 
+	}
 }
+
+
+void SaveFile(const Contact* pc)
+{
+	assert(pc);
+	FILE* fpWrite = fopen("data.txt", "wb");
+	if (fpWrite == NULL)
+	{
+		perror("SaveFile");
+		return;
+	}
+	//写文件
+	int i = 0;
+	for (i = 0; i < pc->count; i++)
+	{
+		fwrite(pc->data + i, sizeof(PeoInfo), 1, fpWrite);
+	}
+	fclose(fpWrite);
+	fpWrite = NULL;
+}
+
+void ContactLoad(Contact* pc)
+{
+	FILE* fpRead = fopen("data.txt", "rb");
+	if (fpRead == NULL)
+	{
+		perror("SaveFile");
+		return;
+	}
+	PeoInfo tmp = { 0 };
+	while (fread(&tmp, sizeof(PeoInfo), 1, fpRead) == 1)
+	{
+		CheckCapacity(pc);
+		pc->data[pc->count] = tmp;
+		pc->count++;
+	}
+	fclose(fpRead);
+	fpRead = NULL;
+}
+
+
+void ContactInit(Contact* pc)
+{
+	assert(pc);
+	pc->data = calloc(DEFAULT_SZ, sizeof(PeoInfo));
+	if (pc->data == NULL)
+	{
+		printf("ContactInit::%s", strerror(errno));
+		exit(-1);
+	}
+	pc->count = 0;
+	pc->capacity = DEFAULT_SZ;
+	//加载文件到通信录
+	ContactLoad(pc);
+}
+
 
 void ContactAdd(Contact* pc)
 {
