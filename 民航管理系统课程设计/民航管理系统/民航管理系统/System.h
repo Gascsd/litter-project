@@ -39,7 +39,6 @@ typedef struct FlightInfo
     char flightNo[8];//航班号
     char start[6];//出发地
     char end[6];//目的地
-    char sche[6];//飞行日
     char startTime[8];//出发时间
     char endTime[8];//到达时间
     int  price;//票价
@@ -61,14 +60,14 @@ void System();//系统函数，这里是进入系统的入口
 void menu();//菜单函数，打印功能列表，选择功能
 void BookTicket();//订票函数
 void RefundTicket();//退票函数
-void ViewFlightInfo();//显示所有航班信息
+void ViewFlightInfo(Flight* pfight);//显示所有航班信息
 void CheckFlightInfo();//查询制定航班信息
 void read_file(Flight* pfight);//读文件
+void save_file(Flight* pfight);//写文件
 
 
 
-
-
+//测试函数
 
 
 
