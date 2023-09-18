@@ -25,7 +25,7 @@ void InitBoard(char board[ROWS][COLS], int row, int col, char set)
 
 void DisplayBoard(char board[ROWS][COLS], int row, int col)
 {
-	printf("-------É¨À×ÓÎÏ·-------\n");
+	printf("-------game-------\n");
 	int i = 0;
 	int j = 0;
 	for (i = 0; i <= col; i++)
@@ -42,7 +42,7 @@ void DisplayBoard(char board[ROWS][COLS], int row, int col)
 		}
 		printf("\n");
 	}
-	printf("-------É¨À×ÓÎÏ·-------\n");
+	printf("-------game-------\n");
 }
 
 void SetMine(char board[ROWS][COLS], int row, int col)
@@ -80,8 +80,8 @@ int get_mine_count(char board[ROWS][COLS], int x, int y)
 void menu2()
 {
 	printf("-------------------\n");
-	printf("***  1. ÅÅ²éÀ×  ***\n");
-	printf("***  2. ±ê¼ÇÀ×  ***\n");
+	printf("***  1. Check  ***\n");
+	printf("***  2. Markers  ***\n");
 	printf("-------------------\n");
 }
 
@@ -90,14 +90,14 @@ void UnfoldBoard(char mine[ROWS][COLS], char show[ROWS][COLS], int x, int y)
 	int i = 0;
 	int j = 0;
 	int count = 0;
-	if (x > 0 && x <= ROW && y > 0 && y <= COL)//ÅĞ¶Ï×ø±êÊÇ·ñºÏ·¨
+	if (x > 0 && x <= ROW && y > 0 && y <= COL)//åˆ¤æ–­åæ ‡æ˜¯å¦åˆæ³•
 	{
 		for (i = -1; i <= 1; i++)
 		{
 			for (j = -1; j <= 1; j++)
 			{
 				count = get_mine_count(mine, x + i, y + j);
-				if (count == 0)//ÅĞ¶Ï¸ÃÎ»ÖÃÖÜÎ§ÓĞÃ»ÓĞÀ×
+				if (count == 0)//åˆ¤æ–­è¯¥ä½ç½®å‘¨å›´æœ‰æ²¡æœ‰é›·
 				{
 					if (show[x + i][y + j] == '*' || show[x + i][y + j] == '#')
 					{
@@ -118,16 +118,16 @@ void SeekMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
 	int count = 0;
 	while (1)
 	{
-		printf("ÇëÊäÈëÒªÅÅ²éµÄ×ø±ê:>\n");
+		printf("please input Point:>\n");
 		scanf("%d%d", &x, &y);
-		if (x >= 1 && x <= row && y >= 1 && y <= col)//ÅĞ¶Ï×ø±êÊÇ·ñºÏ·¨
+		if (x >= 1 && x <= row && y >= 1 && y <= col)//åˆ¤æ–­åæ ‡æ˜¯å¦åˆæ³•
 		{
-			if (show[x][y] == '*' || show[x][y] == '#')//Èç¹û¸ÃÎ»ÖÃÎ´±»ÅÅ²é¹ı
+			if (show[x][y] == '*' || show[x][y] == '#')//å¦‚æœè¯¥ä½ç½®æœªè¢«æ’æŸ¥è¿‡
 			{
-				if (mine[x][y] != '1')//Èç¹û¸ÃÎ»ÖÃ²»ÊÇÀ×
+				if (mine[x][y] != '1')//å¦‚æœè¯¥ä½ç½®ä¸æ˜¯é›·
 				{
 					count = get_mine_count(mine, x, y);
-					if(count == 0)//ÅĞ¶Ï¸ÃÎ»ÖÃÖÜÎ§ÓĞÃ»ÓĞÀ×
+					if(count == 0)//åˆ¤æ–­è¯¥ä½ç½®å‘¨å›´æœ‰æ²¡æœ‰é›·
 						UnfoldBoard(mine, show, x, y);
 					//DisplayBoard(show, ROW, COL);
 					else
@@ -137,21 +137,21 @@ void SeekMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
 				}
 				else
 				{
-					printf("ºÜÒÅº¶£¬±»Õ¨ËÀÁË\n");
-					flag = -1;//±êÖ¾×Å±»Õ¨ËÀÁË
+					printf("Unfortunately, he was blown up\n");
+					flag = -1;//æ ‡å¿—ç€è¢«ç‚¸æ­»äº†
 					DisplayBoard(mine, ROW, COL);
 					break;
 				}
 			}
 			else
 			{
-				printf("¸Ã×ø±êÒÑ¾­±»ÅÅ²é¹ıÀ²£¡\n");
+				printf("The coordinates have already been checkedï¼\n");
 			}
 			break;
 		}
 		else
 		{
-			printf("ÊäÈë×ø±ê´íÎó£¬ÇëÖØĞÂÊäÈë\n");
+			printf("Enter coordinates incorrectly, please re-enter\n");
 		}
 	}
 }
@@ -162,7 +162,7 @@ int MarkMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col, int
 	int y = 0;
 	while (1)
 	{
-		printf("ÇëÊäÈëÒª±ê¼ÇµÄ×ø±ê:>\n");
+		printf("Please enter the coordinates you want to mark:>\n");
 		scanf("%d%d", &x, &y);
 		if (x >= 1 && x <= row && y >= 1 && y <= col)
 		{
@@ -174,13 +174,13 @@ int MarkMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col, int
 			}
 			else
 			{
-				printf("¸Ã×ø±êÒÑ¾­±»±ê¼Ç»òÅÅ²é¹ıÀ²£¡\n");
+				printf("The coordinates have already been flagged or checkedï¼\n");
 			}
 			break;
 		}
 		else
 		{
-			printf("ÊäÈë×ø±ê´íÎó£¬ÇëÖØĞÂÊäÈë\n");
+			printf("Enter coordinates incorrectly, please reenter\n");
 		}
 	}
 	return ismine;
@@ -208,33 +208,33 @@ void FindMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
 	do
 	{
 		menu2();
-		printf("ÇëÊäÈëÒªÖ´ĞĞµÄ²Ù×÷:>");
+		printf("Please enter the action to be performed:>");
 		scanf("%d", &input);
 		switch (input)
 		{
 		case 1:
-			printf("ÅÅ²éÀ×\n");
+			printf("Scouring mine\n");
 			SeekMine(mine, show, ROW, COL);
 			if (not_mine != -1)
 				DisplayBoard(show, ROW, COL);
 			break;
 		case 2:
-			printf("±ê¼ÇÀ×\n");
+			printf("Marker mine\n");
 			ismine = MarkMine(mine, show, ROW, COL, ismine);
 			DisplayBoard(show, ROW, COL);
 			break;
 		default:
-			printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë\n");
+			printf("Input error, please re-enter\n");
 		}
 		if (ismine == EASY)
 		{
-			printf("¹§Ï²Äã£¬ÓÎÏ·Ê¤Àû£¬ÅÅ²é³öÁËËùÓĞµÄÀ×\n");
+			printf("Congratulations, game of Thrones. We've identified all the Thunder\n");
 			break;
 		}
 		int win = isWin(show, ROW, COL);
 		if (win == EASY)
 		{
-			printf("¹§Ï²Äã£¬ÓÎÏ·Ê¤Àû£¬ÅÅ²é³öÁËËùÓĞµÄÀ×\n");
+			printf("Congratulations, game of Thrones. We've identified all the Thunder\n");
 			break;
 		}
 	} while (1);
@@ -243,16 +243,16 @@ void FindMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
 
 void game()
 {
-	char mine[ROWS][COLS] = { 0 };//´æ·Å²¼ÖÃµÄÀ×µÄĞÅÏ¢
-	char show[ROWS][COLS] = { 0 };//´æ·ÅÅÅ³ıµÄÀ×µÄĞÅÏ¢
-	//³õÊ¼»¯Êı×é
+	char mine[ROWS][COLS] = { 0 };//å­˜æ”¾å¸ƒç½®çš„é›·çš„ä¿¡æ¯
+	char show[ROWS][COLS] = { 0 };//å­˜æ”¾æ’é™¤çš„é›·çš„ä¿¡æ¯
+	//åˆå§‹åŒ–æ•°ç»„
 	InitBoard(mine, ROWS, COLS, '0');
 	InitBoard(show, ROWS, COLS, '*');
-	//ÉèÖÃÀ×
+	//è®¾ç½®é›·
 	SetMine(mine, ROW, COL);
-	//´òÓ¡ÆåÅÌ
+	//æ‰“å°æ£‹ç›˜
 	//DisplayBoard(mine, ROW, COL);
 	DisplayBoard(show, ROW, COL);
-	//ÅÅÀ×
+	//æ’é›·
 	FindMine(mine, show, ROW, COL);
 }

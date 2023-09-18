@@ -4,21 +4,21 @@
 
 int main()
 {
-	srand((unsigned int)time(NULL));//设置随机数起点
+	srand((unsigned int)time(NULL));
 	int input = 0;
 	do
 	{
 		menu();
-		printf("please input:>");
+		printf("请输入:>");
 		scanf("%d", &input);
 		switch (input)
 		{
 		case 1:
-			printf("start game\n");
+			printf("玩游戏\n");
 			game();
 			break;
 		case 0:
-			printf("exit\n");
+			printf("退出\n");
 			break;
 		default:
 			printf("输入错误，请重新输入\n");

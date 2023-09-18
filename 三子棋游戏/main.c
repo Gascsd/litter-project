@@ -1,28 +1,26 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
 #include"game.h"
-
 int main()
 {
-	srand((unsigned int)time(NULL));//ÉèÖÃËæ»úÊıÆğµã
+	srand((unsigned int)time(NULL));
 	int input = 0;
 	do
 	{
 		menu();
-		printf("please input:>");
+		printf("è¯·è¾“å…¥:->\n");
 		scanf("%d", &input);
 		switch (input)
 		{
 		case 1:
-			printf("start game\n");
+			printf("ç©æ¸¸æˆ\n");
 			game();
 			break;
 		case 0:
-			printf("exit\n");
+			printf("é€€å‡º\n");
 			break;
 		default:
-			printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë\n");
+			printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥\n");
 		}
 	} while (input);
-	return 0;
 }

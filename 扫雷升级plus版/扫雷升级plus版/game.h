@@ -8,7 +8,7 @@
 #define COL 9
 #define ROWS ROW+2
 #define COLS COL+2
-#define EASY 12//À×µÄ¸öÊý
+#define EASY 5
 
 
 void menu();
