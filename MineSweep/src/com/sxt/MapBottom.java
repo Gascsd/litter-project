@@ -11,6 +11,7 @@ public class MapBottom {
 
     BottomRay bottomRay = new BottomRay();
     BottomNum bottomNum = new BottomNum();
+
     {
         bottomRay.newRay();
         bottomNum.newNum();
@@ -18,6 +19,7 @@ public class MapBottom {
 
     //重置游戏
     void reGame() {
+        //将存放雷的数组置空
         for (int i = 1; i <= GameUtil.MAP_W; i++) {
             for (int j = 1; j <= GameUtil.MAP_H; j++) {
                 GameUtil.DATA_BOTTOM[i][j] = 0;
@@ -29,7 +31,7 @@ public class MapBottom {
     //绘制方法
     void paintSelf(Graphics g) {
 
-        g.setColor(Color.red);
+        g.setColor(Color.red);//设置绘制格子的颜色为红色
 
         //画竖线
         for (int i = 0; i <= GameUtil.MAP_W; i++) {
@@ -45,6 +47,7 @@ public class MapBottom {
                     GameUtil.OFFSET + GameUtil.MAP_W * GameUtil.SQUARE_LENGTH,
                     3 * GameUtil.OFFSET + i * GameUtil.SQUARE_LENGTH);
         }
+        //填充雷和数字
         for (int i = 1; i <= GameUtil.MAP_W; i++) {
             for (int j = 1; j <= GameUtil.MAP_H; j++) {
                 //雷
@@ -80,6 +83,7 @@ public class MapBottom {
                 30,
                 Color.red);
 
+        //根据输赢的不同，绘制游戏状态的图标
         switch (GameUtil.state) {
             case 0:
                 GameUtil.END_TIME = System.currentTimeMillis();

@@ -11,7 +11,7 @@ public class BottomNum {
                     for (int k = i - 1; k <= i+1 ; k++) {
                         for (int l = j-1; l <= j+1; l++) {
                             if(GameUtil.DATA_BOTTOM[k][l] >= 0) {
-                                GameUtil.DATA_BOTTOM[k][l]++;
+                                GameUtil.DATA_BOTTOM[k][l]++;//求出底层显示的数字
                             }
                         }
 

@@ -7,9 +7,11 @@ import java.awt.*;
  */
 public class GameSelect {
 
-    //判断是否点击到
+    //设置成功返回t 失败返回false
     boolean hard() {
+        //鼠标点击在合法的列
         if(GameUtil.MOUSE_X > 100 && GameUtil.MOUSE_X < 400) {
+            //鼠标点击对应的行，设置对应的level
             if(GameUtil.MOUSE_Y > 50 && GameUtil.MOUSE_Y < 150) {
                 GameUtil.level = 1;
                 GameUtil.state = 0;
@@ -29,8 +31,9 @@ public class GameSelect {
         return false;
     }
 
+    //打印难度选择窗口
     void paintSelf(Graphics g) {
-        g.setColor(Color.black);
+        g.setColor(Color.black);//设置难度选择的字体颜色
         g.drawRect(100, 50,300, 100);
         GameUtil.drawWord(g,"简单", 220, 100, 30,Color.black);
 
@@ -41,6 +44,7 @@ public class GameSelect {
         GameUtil.drawWord(g,"困难", 220, 400, 30,Color.black);
     }
 
+    //根据对应的level设置雷的个数格子个数（长和宽）
     void hard(int level) {
         switch (level) {
             case 1 -> {
